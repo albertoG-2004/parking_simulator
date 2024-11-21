@@ -2,13 +2,11 @@ package models
 
 import "sync"
 
-// CarManager gestiona una colección de autos.
 type CarManager struct {
 	mu   sync.Mutex
 	Cars []*Car
 }
 
-// NewCarManager crea una nueva instancia de CarManager.
 func NewCarManager() *CarManager {
 	return &CarManager{
 		Cars: []*Car{},

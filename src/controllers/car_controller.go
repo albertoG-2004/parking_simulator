@@ -43,7 +43,7 @@ func (cicle *CarController) Start() {
 
 	cicle.Leave(spot)
 
-	// Los autos que salen adquieren el PathChan para tener prioridad
+	// Los autos que salen usan el pathChan para tener prioridad
 	<-cicle.PathChan
 	cicle.ExitDoor()
 	cicle.PathChan <- struct{}{}
