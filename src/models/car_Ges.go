@@ -15,14 +15,14 @@ func NewCarManager() *CarManager {
 	}
 }
 
-// AddCar añade un auto al gestor (carMaager).
+// AddCar añade un auto al gestor (carManager).
 func (carAddGes *CarManager) AddCar(car *Car) {
 	carAddGes.mu.Lock()
 	defer carAddGes.mu.Unlock()
 	carAddGes.Cars = append(carAddGes.Cars, car)
 }
 
-// RemoveCar elimina un auto del gestor (carMaager).
+// RemoveCar elimina un auto del gestor (carManager).
 func (carDeleteGes *CarManager) RemoveCar(car *Car) {
 	carDeleteGes.mu.Lock()
 	defer carDeleteGes.mu.Unlock()
@@ -34,7 +34,6 @@ func (carDeleteGes *CarManager) RemoveCar(car *Car) {
 	}
 }
 
-// GetCars devuelve la lista de autos.
 func (Listdevolution *CarManager) GetCars() []*Car {
 	Listdevolution.mu.Lock()
 	defer Listdevolution.mu.Unlock()

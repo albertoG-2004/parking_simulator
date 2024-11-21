@@ -38,7 +38,7 @@ func NewCarView(car *models.Car, ctx *scene.Context) *CarView {
 
 	x, y := car.GetPosition()
 	spriteSwitch.SetPos(x, y)
-	render.Draw(spriteSwitch, 3) // Dibujar el sprite en la capa 3
+	render.Draw(spriteSwitch, 3)
 
 	carView := &CarView{
 		Car:     car,
@@ -50,7 +50,6 @@ func NewCarView(car *models.Car, ctx *scene.Context) *CarView {
 	return carView
 }
 
-// Update actualiza la posición y dirección del sprite del auto.
 func (cv *CarView) Update(data interface{}) {
 	car := data.(*models.Car)
 	x, y := car.GetPosition()

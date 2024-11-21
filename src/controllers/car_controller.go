@@ -7,7 +7,6 @@ import (
 	"time"
 )
 
-// CarController maneja la lógica de los autos.
 type CarController struct {
 	Car        *models.Car
 	Parking    *models.Parking
@@ -17,7 +16,6 @@ type CarController struct {
 	PathChan   chan struct{}
 }
 
-// Instancia de CarController.
 func NewCarController(car *models.Car, parking *models.Parking, carManager *models.CarManager, doorChan chan struct{}, pathChan chan struct{}) *CarController {
 	return &CarController{
 		Car:        car,
@@ -54,7 +52,7 @@ func (cicle *CarController) Start() {
 	cicle.CarManager.RemoveCar(cicle.Car)
 }
 
-// Implementación de los métodos de movimiento del auto.
+// Implementación de los métodos para mover el carro.
 func (MoveCar *CarController) Enqueue() {
 	MoveCar.Parking.CarsList.Enqueue(MoveCar.Car)
 
@@ -62,7 +60,6 @@ func (MoveCar *CarController) Enqueue() {
 	spacing := 50.0
 
 	for MoveCar.Car.Y > minY {
-		// Obtener el auto delante en la cola
 		carAhead := MoveCar.Parking.CarsList.GetCarAhead(MoveCar.Car)
 		canMove := true
 

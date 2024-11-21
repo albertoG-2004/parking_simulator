@@ -22,7 +22,6 @@ func NewCar() *Car {
 		"src/assets/brownCar.png",
 		"src/assets/green.png",
 		"src/assets/orangeCar.png",
-		"src/assets/whiteCar.png",
 	}
 	rand.Seed(time.Now().UnixNano())
 	modelPath := modelPaths[rand.Intn(len(modelPaths))]
