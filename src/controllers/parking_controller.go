@@ -9,7 +9,7 @@ import (
 	"github.com/oakmound/oak/v4/scene"
 )
 
-// ParkingController maneja la lógica del estacionamiento.
+// parking_controller maneja la lógica del estacionamiento.
 type ParkingController struct {
 	Parking    *models.Parking
 	View       *views.ParkingView
@@ -21,10 +21,10 @@ type ParkingController struct {
 // NewParkingController crea instancia de ParkingController.
 func NewParkingController(parking *models.Parking) *ParkingController {
 	doorChan := make(chan struct{}, 1)
-	doorChan <- struct{}{} // Inicializar el semáforo de la puerta
+	doorChan <- struct{}{}
 
 	pathChan := make(chan struct{}, 1)
-	pathChan <- struct{}{} // Inicializar el semáforo del camino compartido
+	pathChan <- struct{}{}
 
 	return &ParkingController{
 		Parking:    parking,
@@ -36,10 +36,9 @@ func NewParkingController(parking *models.Parking) *ParkingController {
 
 // StartCarGeneration inicia el proceso de generación de autos.
 func (pc *ParkingController) StartCarGeneration(ctx *scene.Context) {
-	// Descomentar los comentarios a partir de la linea justo abajo de esta linea en caso de querer liminar la cantidads de autos a generar
-	//const maxCars = 100
+	const maxCars = 100
 	go func() {
-		for /*i := 0; i < maxCars; i++*/ {
+		for i := 0; i < maxCars; i++ {
 			car := models.NewCar()
 			carController := NewCarController(car, pc.Parking, pc.CarManager, pc.DoorChan, pc.PathChan)
 			carView := views.NewCarView(car, ctx)

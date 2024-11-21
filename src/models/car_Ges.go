@@ -15,14 +15,14 @@ func NewCarManager() *CarManager {
 	}
 }
 
-// AddCar añade un auto al gestor.
+// AddCar añade un auto al gestor (carMaager).
 func (carAddGes *CarManager) AddCar(car *Car) {
 	carAddGes.mu.Lock()
 	defer carAddGes.mu.Unlock()
 	carAddGes.Cars = append(carAddGes.Cars, car)
 }
 
-// RemoveCar elimina un auto del gestor.
+// RemoveCar elimina un auto del gestor (carMaager).
 func (carDeleteGes *CarManager) RemoveCar(car *Car) {
 	carDeleteGes.mu.Lock()
 	defer carDeleteGes.mu.Unlock()

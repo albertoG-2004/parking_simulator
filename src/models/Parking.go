@@ -4,7 +4,6 @@ import (
 	"github.com/oakmound/oak/v4/alg/floatgeom"
 )
 
-// Constantes para direcciones
 const (
 	DirectionLeft  = "left"
 	DirectionRight = "right"
@@ -12,13 +11,11 @@ const (
 	DirectionDown  = "down"
 )
 
-// ParkingSpotDirection representa una dirección específica y un punto asociado para maniobrar en un estacionamiento.
 type ParkingSpotDirection struct {
 	Direction string  // Dirección del movimiento.
 	Point     float64 // Punto asociado con la dirección.
 }
 
-// NewParkingSpotDirection crea y devuelve una nueva instancia de ParkingSpotDirection.
 func NewParkingSpotDirection(direction string, point float64) *ParkingSpotDirection {
 	return &ParkingSpotDirection{
 		Direction: direction,
@@ -26,16 +23,15 @@ func NewParkingSpotDirection(direction string, point float64) *ParkingSpotDirect
 	}
 }
 
-// ParkingSpot representa un lugar de estacionamiento.
+// Lugar de estacionamiento
 type ParkingSpot struct {
-	Area                 *floatgeom.Rect2        // Área que delimita el lugar de estacionamiento.
-	DirectionsForParking []*ParkingSpotDirection // Direcciones para estacionar en este lugar.
-	DirectionsForLeaving []*ParkingSpotDirection // Direcciones para salir de este lugar.
-	Number               int                     // Número del lugar de estacionamiento.
-	IsAvailable          bool                    // Estado de disponibilidad del lugar.
+	Area                 *floatgeom.Rect2
+	DirectionsForParking []*ParkingSpotDirection
+	DirectionsForLeaving []*ParkingSpotDirection
+	Number               int
+	IsAvailable          bool
 }
 
-// NewParkingSpot crea y devuelve un nuevo lugar de estacionamiento con los parámetros especificados.
 func NewParkingSpot(x, y, x2, y2 float64, row, number int) *ParkingSpot {
 	area := floatgeom.NewRect2(x, y, x2, y2)
 	directionsForParking := GetDirectionsForParking(row, x, y)
@@ -50,7 +46,6 @@ func NewParkingSpot(x, y, x2, y2 float64, row, number int) *ParkingSpot {
 	}
 }
 
-// GetDirectionsForParking genera y devuelve las direcciones necesarias para estacionar en función de la fila.
 func GetDirectionsForParking(row int, x, y float64) []*ParkingSpotDirection {
 	var directions []*ParkingSpotDirection
 
